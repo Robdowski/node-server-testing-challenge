@@ -1,24 +1,35 @@
 const db = require('../data/dbconfig')
 
 const insert = instructor => {
-    null
+   return db('instructors').insert(instructor, "id")
+   .then(([id]) => {
+       return db('instructors')
+       .where({id})
+       .first()
+   })
 }
 
 const remove = id => {
-    null
+    return db('instructors')
+    .where({ id })
+    .del()
 }
 
-const update = (instructor, id) => {
-    null
+const updateInstructor = (changes, id) => {
+    return db('instructors')
+    .where("id", Number(id))
+    .update(changes)
 }
 
 const fetchAll = () => {
-    null
+    return db('instructors')
 }
 
 const fetchById = id =>{
-    null
+    return db('instructors')
+    .where('id', Number(id))
+    .first()
 }
 
 
-module.exports = { insert, remove, update, fetchAll, fetchById }
+module.exports = { insert, remove, updateInstructor, fetchAll, fetchById }

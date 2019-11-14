@@ -13,4 +13,8 @@ server.use(express.json())
 const instructorRouter = require('./instructors/instructor-router')
 server.use('/api/instructors', instructorRouter)
 
+server.get('/', (req, res) => {
+    res.status(200).json({api: "up"})
+})
+
 module.exports = server
